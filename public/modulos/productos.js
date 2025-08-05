@@ -19,14 +19,23 @@ export default class Productos {
 
         const guardarProducto = () => {
           var ind = 0;//id menor posible
-          const { nombre, vencimiento, precio } = config.producto_actual;
+          const { nombre, vencimiento, precio, descripcion } = config.producto_actual;
 
-          if (!nombre || !vencimiento || !precio ) {
+          const regexNombre = /^[a-zA-ZÁÉÍÓÚáéíóúñÑ0-9\s]+$/;
+          if (!nombre || !vencimiento || !precio) {
             alerta.alerta_personalizada("rojo", 'Los campos de Nombre, Precio y Fecha de vencimiento son obligatorios');
             return;
           }
 
-          if((precio <= 0)){
+          if (!regexNombre.test(nombre)) {
+            alerta.alerta_personalizada("rojo", 'El nombre no debe contener símbolos especiales');
+            return;
+          }
+          if (!regexNombre.test(descripcion)) {
+            alerta.alerta_personalizada("rojo", 'la descripción del producto no debe contener símbolos especiales');
+            return;
+          }
+          if ((precio <= 0)) {
             alerta.alerta_personalizada("rojo", 'El precio del Producto no puede ser menor o igual a cero.');
             return;
           }
@@ -64,7 +73,7 @@ export default class Productos {
           //AQUI SE GUARDA EN LOCAL STORANGE
           guardarEnLocalStorage();
         };
-        
+
         const guardarEnLocalStorage = () => {
           localStorage.setItem('productos', JSON.stringify(config.lista_productos));
         };
@@ -110,11 +119,15 @@ export default class Productos {
         };
         const eliminarProducto = () => {
           config.lista_productos = config.lista_productos.filter(p => p.id !== config.producto_actual.id);
-          const modal = new bootstrap.Modal(document.getElementById('modal_elim_con'));
-          modal.hide();
-          //AQUI SE GUARDA EN LOCALSTORANGE
+
+          // Cerrar el modal de confirmación
+          const modalElement = document.getElementById('modal_elim_con');
+          const modal = bootstrap.Modal.getInstance(modalElement);
+          if (modal) modal.hide();
+
           guardarEnLocalStorage();
         };
+
 
         const diasParaVencer = (fechaStr) => {
           const hoy = new Date();
