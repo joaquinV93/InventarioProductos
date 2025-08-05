@@ -2,8 +2,8 @@
 Prueba Técnica de Inventarios con VUEJS
 By: Joaquín Salazar Vega 2025 
 
-# Correo y telefono para contacto
-3531115901  joaquin.vega93@hotmail.com
+# Correo
+joaquin.vega93@hotmail.com
 (En caso de aclaraciones, favor de comunicarse vía Whatsapp)
 
 # Liga de descarga del proyecto publico
@@ -13,23 +13,24 @@ git@github.com:joaquinV93/InventarioProductos.git
 
 
 # Instrucciones de Instalación
-1.- Descargar el proyecto vía .zip o clonar el repositorio vía SSH
-2.- Arir la carpeta o proyecto clonado, desde la ruta en donde se descargo.
-3.- Ejecutar el demonion start-server.bat que se encargará de levantar la aplicacion por el puerto 3000
-4.- Abrir la liga http://localhost:3000/index.html con cualquier Navegador.
-5.- Comenzar a usar.
+>1.- Descargar el proyecto vía .zip o clonar el repositorio vía SSH
+>2.- Arir la carpeta o proyecto clonado, desde la ruta en donde se descargo.
+>3.- Ejecutar el demonion start-server.bat que se encargará de levantar la aplicacion por el puerto 3000
+>4.- Abrir la liga http://localhost:3000/index.html con cualquier Navegador.
+>5.- Comenzar a usar.
 
 
 # NOTAS
+>Ejecutesé solo en versiones de Windows 10 o 11
 >Aseguresé que antes de iniciar el servidor con el demonio start-server no se este usando el puerto 3000.
 >No es nesesario instalar dependencias adicionales, todo esta contenido en el proyecto
 
 # NOTAS TECNICAS
 >Vue3
->Php 8.2.4 - Solo para levantar el proyecto en localhost
+>Php 8.2.4 - (Solo para levantar el proyecto en localhost)
 >bootstrap 5.3.3
 >Font Awesome Free 6.5.0
->Alertas Con alerts de bootstrap
+>Alertas con alerts de bootstrap
 >Archivo .bat para levantamiento de servidor
 
 # Descripción 
