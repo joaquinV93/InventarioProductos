@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SISTEMA DE INVENTARIO</title>
+    <!--  CSS PERSONALIZADOS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./lib/font_awesome.css">
+    <link rel="stylesheet" href="./lib/main.css">
+    <!-- BOOTSTRAP -->
+    <script src="./frameworks/bootstrap-5.3.3/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./frameworks/bootstrap-5.3.3/css/bootstrap.min.css">
+    <!-- SCRIPT MAIN -->
+    <script type="module" src="./modulos/main.js"></script>
+    
+
+</head>
+
+<body>
+    <div id="app" class="row m-0 p-0 flex-column justify-content-center align-items-center">
+        <h2 class="text-center">Gestión de Productos v1.0</h2>
+        <div class="col-5">
+            <button @click="modalProducto_OPEN(null)" id="btnAgregar" class="col-12 btn btn-primary mb-3 d-block mx-auto my-2"><i class="fa-solid fa-plus"></i> Agregar producto</button>
+        </div>
+    </div>
+
+</body>
+
+</html>

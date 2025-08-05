@@ -1,0 +1,36 @@
+<!-- vistas/modal-producto.html -->
+<div class="modal fade" id="modalProducto" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{producto_actual.id? 'Modificar Producto':'Agregar Producto'}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <h6 class="text-center text-muted">Los campos con * son obligatorios</h6>
+        <form id="formProducto">
+          <div class="mb-3">
+            <label class="form-label">Nombre*</label>
+            <input type="text" class="form-control" v-model="producto_actual.nombre" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Descripción</label>
+            <textarea class="form-control" v-model="producto_actual.descripcion"></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Fecha de vencimiento*</label>
+            <input type="date" class="form-control" v-model="producto_actual.vencimiento" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Precio*</label>
+            <input type="number" class="form-control" v-model="producto_actual.precio" required min="0">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" @click="guardarProducto">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<!-- vistas/tabla-productos.html -->
+<div id="tablaProductos">
+  <table class="table table-hover table-bordered align-middle text-center">
+    <thead class="table-dark">
+      <tr>
+        <th class="text-center">ID</th>
+        <th class="text-center">Nombre</th>
+        <th class="text-center">Descripción</th>
+        <th class="text-center">Fecha Vencimiento</th>
+        <th class="text-center">Precio</th>
+        <th class="text-center">Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="p in lista_productos" :key="p.id">
+        <td>{{ p.id }}</td>
+        <td>{{ p.nombre }}</td>
+        <td>{{ p.descripcion }}</td>
+        <td>{{ p.vencimiento }}</td>
+        <td>{{ formatearPrecio(p.precio) }}</td>
+        <td class="d-flex justify-content-between align-items-center">
+          <button type="button" class="btn btn-danger" style="width: fit-content;"><i class="fa-solid fa-trash"></i></button>
+          <button type="button" class="btn btn-warning" style="width: fit-content;"><i class="fa-solid fa-pencil"></i></button>
+        </td>
+      </tr>
+      <tr v-if="lista_productos.length === 0">
+        <td colspan="4" class="text-muted">No hay productos registrados.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
