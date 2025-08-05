@@ -1,4 +1,4 @@
-import { createApp, reactive, toRefs } from '../vue/vue.esm-browser.js';
+import { createApp, reactive, toRefs, onMounted } from '../vue/vue.esm-browser.js';
 import al from './alertas.js';
 
 export default class Productos {
@@ -21,12 +21,16 @@ export default class Productos {
           var ind = 0;//id menor posible
           const { nombre, vencimiento, precio } = config.producto_actual;
 
-          if (!nombre || !vencimiento || precio === null || precio === undefined) {
-            alerta.alerta_personalizada("rojo",'Los campos de Nombre, Precio y Fecha de vencimiento son obligatorios');
+          if (!nombre || !vencimiento || !precio ) {
+            alerta.alerta_personalizada("rojo", 'Los campos de Nombre, Precio y Fecha de vencimiento son obligatorios');
             return;
           }
 
-          
+          if((precio <= 0)){
+            alerta.alerta_personalizada("rojo", 'El precio del Producto no puede ser menor o igual a cero.');
+            return;
+          }
+
 
           if (config.producto_actual.id != null) {
             // Buscar el índice del producto existente por ID
@@ -57,6 +61,12 @@ export default class Productos {
           if (modal) modal.hide();
 
           limpiarFormulario();
+          //AQUI SE GUARDA EN LOCAL STORANGE
+          guardarEnLocalStorage();
+        };
+        
+        const guardarEnLocalStorage = () => {
+          localStorage.setItem('productos', JSON.stringify(config.lista_productos));
         };
 
         const limpiarFormulario = () => {
@@ -86,11 +96,54 @@ export default class Productos {
           return isNaN(valor) ? '$ 0.00' : `$ ${valor.toFixed(2)}`;
         };
 
+        const abrirConfirmacion = (producto) => {
+          config.producto_actual = producto ? { ...producto } :
+            {
+              id: null,
+              nombre: '',
+              descripcion: '',
+              vencimiento: '',
+              precio: 0,
+            };
+          const modal = new bootstrap.Modal(document.getElementById('modal_elim_con'));
+          modal.show();
+        };
+        const eliminarProducto = () => {
+          config.lista_productos = config.lista_productos.filter(p => p.id !== config.producto_actual.id);
+          const modal = new bootstrap.Modal(document.getElementById('modal_elim_con'));
+          modal.hide();
+          //AQUI SE GUARDA EN LOCALSTORANGE
+          guardarEnLocalStorage();
+        };
+
+        const diasParaVencer = (fechaStr) => {
+          const hoy = new Date();
+          const fechaVencimiento = new Date(fechaStr);
+          const diff = fechaVencimiento - hoy;
+
+          // Calcular días redondeando hacia abajo
+          return Math.floor(diff / (1000 * 60 * 60 * 24));
+        };
+
+        onMounted(() => {
+          const productosGuardados = localStorage.getItem('productos');
+          if (productosGuardados) {
+            try {
+              config.lista_productos = JSON.parse(productosGuardados);
+            } catch (error) {
+              console.error('Error al cargar productos del localStorage:', error);
+            }
+          }
+        });
+
         return {
           ...toRefs(config), // Acceso directo a producto_actual y lista_productos
           guardarProducto,
           modalProducto_OPEN,
-          formatearPrecio
+          formatearPrecio,
+          abrirConfirmacion,
+          eliminarProducto,
+          diasParaVencer
         };
       }
     });

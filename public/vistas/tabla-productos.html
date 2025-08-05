@@ -1,5 +1,8 @@
 <!-- vistas/tabla-productos.html -->
 <div id="tablaProductos">
+  <div class="row p-0 m-0 justify-content-center flex-column align-items-center align-content-center">
+    <h6 style="width: fit-content;">Filtros</h6>
+  </div>
   <table class="table table-hover table-bordered align-middle text-center">
     <thead class="table-dark">
       <tr>
@@ -7,20 +10,32 @@
         <th class="text-center">Nombre</th>
         <th class="text-center">Descripción</th>
         <th class="text-center">Fecha Vencimiento</th>
+        <th class="text-center">Días para vencer</th>
         <th class="text-center">Precio</th>
         <th class="text-center">Acción</th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="p in lista_productos" :key="p.id">
+      <tr v-for="p in lista_productos" :key="p.id" :class="{ 'bg-danger text-danger': diasParaVencer(p.vencimiento) < 0 }">
         <td>{{ p.id }}</td>
         <td>{{ p.nombre }}</td>
         <td>{{ p.descripcion }}</td>
         <td>{{ p.vencimiento }}</td>
+        <td>
+          <span v-if="diasParaVencer(p.vencimiento) < 0">
+            <i class="fa-solid fa-triangle-exclamation me-1"></i>
+            Vencido
+          </span>
+          <span v-else>
+            {{ diasParaVencer(p.vencimiento) }} días
+          </span>
+        </td>
         <td>{{ formatearPrecio(p.precio) }}</td>
-        <td class="d-flex justify-content-between align-items-center">
-          <button type="button" class="btn btn-danger" style="width: fit-content;"><i class="fa-solid fa-trash"></i></button>
-          <button type="button" class="btn btn-warning" style="width: fit-content;"><i class="fa-solid fa-pencil"></i></button>
+        <td class="d-flex justify-content-center align-items-center">
+          <button @click="abrirConfirmacion(p)" type="button" class="btn btn-danger mx-1" style="width: fit-content;"><i
+              class="fa-solid fa-trash"></i></button>
+          <button @click="modalProducto_OPEN(p)" type="button" class="btn btn-warning mx-1"
+            style="width: fit-content;"><i class="fa-solid fa-pencil"></i></button>
         </td>
       </tr>
       <tr v-if="lista_productos.length === 0">

@@ -1,5 +1,6 @@
 @echo off
-title InventarioProductos - Servidor Docker
+title InventarioProductos - Vue3
+
 
 echo ----------------------------------------------------
 echo     Levantando InventarioProductos 
@@ -15,8 +16,8 @@ if not exist %PHP_EXE% (
 )
 
 echo Iniciando servidor en http://localhost:3000 ...
-%PHP_EXE% -S localhost:3000 -t public
 echo ----------------------------------------------------
 echo     Corriendo InventarioProductos 
 echo ----------------------------------------------------
+%PHP_EXE% -S localhost:3000 -t public
 pause

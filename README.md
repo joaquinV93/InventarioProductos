@@ -4,7 +4,7 @@ By: Joaquín Salazar Vega 2025
 
 # Correo y telefono para contacto
 3531115901  joaquin.vega93@hotmail.com
-(Favor de comunicarse vía Whatsapp)
+(En caso de aclaraciones, favor de comunicarse vía Whatsapp)
 
 # Liga de descarga del proyecto publico
 https://github.com/joaquinV93/InventarioProductos.git
@@ -23,6 +23,14 @@ git@github.com:joaquinV93/InventarioProductos.git
 # NOTAS
 >Aseguresé que antes de iniciar el servidor con el demonio start-server no se este usando el puerto 3000.
 >No es nesesario instalar dependencias adicionales, todo esta contenido en el proyecto
+
+# NOTAS TECNICAS
+>Vue3
+>Php 8.2.4 - Solo para levantar el proyecto en localhost
+>bootstrap 5.3.3
+>Font Awesome Free 6.5.0
+>Alertas Con alerts de bootstrap
+>Archivo .bat para levantamiento de servidor
 
 # Descripción 
 Este es un proyecto de un inventario para Listar productos, el proyecto es capaz de presentar, agregar, eliminar y modificar esta lista de productos, que esta alojada en LocalStorange, Esta hecho para ejecutarse del lado del cliente puesto que no tiene interacciones con alguna base de datos. Esta desarrollada con Vue3 en su forma de API mediante integraciones de módulos ESM de JS y framework de css bootstrap...

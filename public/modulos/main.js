@@ -15,6 +15,7 @@ class main {
     async cargarVistas() {
         await this.cargarVista('./vistas/modal-producto.html');
         await this.cargarVista('./vistas/tabla-productos.html');
+        await this.cargarVista('./vistas/modal-elim-producto.html');
 
     }
 
