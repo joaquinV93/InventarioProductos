@@ -1,0 +1,24 @@
+<!-- vistas/tabla-productos.html -->
+<div id="tablaProductos">
+  <table class="table table-hover table-bordered align-middle text-center">
+    <thead class="table-dark">
+      <tr>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Fecha Vencimiento</th>
+        <th>Precio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="(p, i) in productos" :key="i">
+        <td>{{ p.nombre }}</td>
+        <td>{{ p.descripcion }}</td>
+        <td>{{ p.vencimiento }}</td>
+        <td>$ {{ parseFloat(p.precio).toFixed(2) }}</td>
+      </tr>
+      <tr v-if="productos.length === 0">
+        <td colspan="4" class="text-muted">No hay productos registrados.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
